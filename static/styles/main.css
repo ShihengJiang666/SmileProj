@@ -4,7 +4,163 @@ body {
         width: 100%;
         height: 100%;
         position: relative;
+        background-color: blanchedalmond;
 }
 
 /* FINISH ME (Task 2.2+): add the styling for the logo and the create button */
+html {
+	font-family: 'Indie Flower', cursive;
+	font-size: 150%;
+}
+
+header {
+	width: 100%;
+  	text-align: center;
+  	position: fixed;
+  	background-color: aliceblue;
+}
+
+.my-button {
+	display: block;
+  	width: 96%;
+ 	background-color: aqua;
+ 	border: rgb(165, 161, 161);
+ 	border-style: outset;
+	text-decoration: blink;
+	margin: 4px auto;
+}
+
+.my-button:hover {
+  	background-color: chocolate;
+  	border-style: inset;
+}
+
+.title {
+ 	text-align: center;
+}
+
+.happiness-level-col {
+ 	width: 80px;
+ 	float: left;
+ 	text-align: center;
+}
+
+.like-col {
+	width: 80px;
+	float: left;
+ 	text-align: center;
+}
+
+.story-col {
+ 	width: calc(100% - 160px);
+ 	float: left;
+}
+
+.myblock {
+  	display: block;
+  	overflow: auto;
+}
+
+.timestamp {
+	margin-left: 80px;
+}
+
+section.mainbody.smiles {
+	padding-top: 128px;
+}
+
+article.smile {
+	background-color: rgb(228, 228, 228);
+    padding: 20px;
+    margin-bottom: 10px;
+  	margin-top: 5px;
+}
+
+
+button.like {
+	border: none;
+  	background: none;
+ 	background-image: url("../images/heart.png");
+    width: 48px;
+ 	height: 42px;
+}
+
+.happiness-level {
+	background-image: url("../images/happiness-level.png");
+  	width: 40px;
+  	height:80px;
+}
+
+.happiness-level-1 {
+	background-position: 0% 0%
+
+}
+
+.happiness-level-2 {
+	background-position: 50% 0%;
+}
+
+.happiness-level-3 {
+	background-position: 100% 0%;
+}
+
+@media screen and (min-width: 800px) {
+   .whole {
+   	-webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
+    column-count: 2;
+   }
+}
+
+@media screen and (min-width: 1200px) {
+   .whole {
+   	-webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+   }
+}
+
+form {
+  display: block;
+  padding-top: 200px;
+  width: 80%;
+  margin: auto;
+}
+
+input.title-input {
+  display: block;
+  width: 100%;
+}
+
+textarea.story-input {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  height: 90px;
+}
+
+select.happiness-level-input {
+  display: block;
+  margin: 10px;
+}
+
+label {
+	margin: 10px;
+	display: block;
+}
+
+a.my-button.cancel {
+  display: block;
+  float: left;
+  width:100px;
+  height: 40px
+}
+
+
+input.my-button.post {
+  	display: block;
+  	float: right;
+  	width:100px;
+  	height: 40px
+}
 
