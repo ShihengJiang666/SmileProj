@@ -100,6 +100,10 @@ var Smile = (function() {
         // Prepare the AJAX handlers for success and failure
         var onSuccess = function(data) {
             /* FINISH ME (Task 2): display smiles with most recent smiles at the beginning */
+            if (data.status == -1) {
+                console.error(data.errors);
+                return;
+            }
             data.smiles.forEach( function(e) {
                 insertSmile(e, false)
                 });
@@ -123,6 +127,10 @@ var Smile = (function() {
             // Prepare the AJAX handlers for success and failure
             var onSuccess = function(data) {
                 /* FINISH ME (Task 3): update the like count in the UI */
+                if (data.status == -1) {
+                    console.error(data.errors);
+                    return;
+                }
                 var newElem = $('.smile#'+smileId);
                 newElem.find('.title').text(data.smile.title);
                 newElem.find('.story').text(data.smile.story);
@@ -194,6 +202,10 @@ var Smile = (function() {
             smile.space = smileSpace;
             var onSuccess = function(data) {
                 // FINISH ME (Task 4): insert smile at the beginning of the smiles container
+                if (data.status == -1) {
+                    console.error(data.errors);
+                    return;
+                }
                 insertSmile(data.smile, true);
                 create.find('.title-input').val('');
                 create.find('.story-input').val('');
