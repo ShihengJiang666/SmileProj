@@ -6,25 +6,71 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/png" href="images/favicon.png">
         <link rel="stylesheet" type="text/css" href="styles/main.css">
+        <link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+        <script src="scripts/jquery.min.js"></script>
+        <script type="text/javascript" src="scripts/smiles.js"></script>
+        <script type="text/javascript">
+            // This is a jQuery convention to say that once all the files
+            // load, the function Smile.start() should run.
+            // This function is defined in the smiles.js
+            $(function() {
+                Smile.start();
+            });
+        </script>
 </head>
 <body>
         <header>
                 <!-- FINISH ME: add the logo here -->
+                <img src="images/logo.png" alt="logo"/>
                 <div class="create">
                     <!-- FINISH ME: add a link to the create page -->
+                    <a class="my-button share">Share a smile</a>
+                    <form method="get" action="index.html">
+                    <input type="text" placeholder="Title" class="title-input" name="title" />
+                    <!-- FINISH ME: add the rest of the form fields -->
+                    <textarea placeholder="Share a smile..." class="story-input" name="story"></textarea>
+                    <label>How happy did this make you?</label>
+                    <select class="happiness-level-input" name= "happiness-level">
+                      <option value="1">Happy</option>
+                      <option value="2">Really happy</option>
+                      <option value="3">So ecstatic, I can't stop smiling!</option>
+                    </select>
+                    <input class="my-button post" type="submit" value="Post" />
+                    <a class="my-button cancel">Cancel</a>
+                   </form>
                 </div>
         </header>
-        <section class="mainbody smiles">
+        <section class="mainbody">
                 <!-- FINISH ME: create 3 smile posts -->
-                <article class="smile">
-                     Add HTML for the post elements: title, level, etc., as per instructions.
-                </article>
-                <article class="smile">
-                     Add HTML for the post elements: title, level, etc., as per instructions.
-                </article>
-                <article class="smile">
-                     Add HTML for the post elements: title, level, etc., as per instructions.
-                </article>
-     </section>
+                <div class="smiles">
+                    <article class="smile">
+                        <div class = "title">
+                            Inflicting Long awkward Smiles 1
+                        </div>
+                        <div class="myblock">
+                            <div class="happiness-level-col">
+                                <div class = "happiness-level">
+                                    
+                                </div>
+                            </div>
+                            <div class="story-col">
+                                <div class = "story">
+                                    Here is the story.Here is the story.Here is the story.Here is the story.Here is the story.Here is the story.Here is the story.Here is the story.Here is the story.Here is the story.
+                                </div>
+                            </div>
+                            <div class="like-col">
+                               <button class="like">Like</button>
+                                <div class="count">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timestamp">
+                            Posted at 1:03pm May 22, 2015
+                        </div>
+                    </article>
+
+                </div>
+        </section>
 </body>
 </html>
