@@ -16,8 +16,14 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from smile import urls as smiles_urls
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     #url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include(smiles_urls)),
+    url(r'^$', 'django.views.static.serve', kwargs={'path': 'index.html', 'document_root': settings.STATIC_ROOT}),
 ]
+
+if settings.DEBUG:
+	urlpatterns+=static('/',document_root=settings.STATIC_ROOT)
