@@ -9,10 +9,12 @@ class smiles(models.Model):
 	like_count = models.IntegerField(default=0)
 	create_at = models.FloatField()
 	updated_at = models.FloatField()
-
-	def __init__(self, *args, **kwargs):
+	@staticmethod
+	def newSmile(*args, **kwargs):
+		smile = smiles()
 		for elem in args:
 			for arg in elem:
-				setattr(self,arg,elem[key])
+				setattr(smile,arg,elem[arg])
 		for arg in kwargs:
-			setattr(self,arg,kwargs[arg])
+			setattr(smile,arg,kwargs[arg])
+		return smile

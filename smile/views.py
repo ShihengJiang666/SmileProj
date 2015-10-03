@@ -5,6 +5,7 @@ from time import time
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
 from models import smiles
+import json
 # Create your views here.
 
 def getError(request):
@@ -12,7 +13,6 @@ def getError(request):
 	order = request.GET.get('order_by', 'updated_at')
 	count = request.GET.get('count', 20)
 	mydict = {}
-	print space
 	if not space:
 		mydict['space'] = "space must be non-empty"
 	if not order:
@@ -22,25 +22,33 @@ def getError(request):
 	return mydict
 
 def postError(request):
-	space = request.GET.get('space')
-	title = request.GET.get('title')
-	story = request.GET.get('story')
-	happiness_level = request.GET.get('happiness_level')
+	info = json.loads(request.body)
 	mydict = {}
-	if not space:
+	if 'space' in info:
+		space = info['space']
+	else:
 		mydict['space'] = "space must be non-empty"
-	elif len(space) > 128:
-		mydict['spacesize'] = "space must be at most 128 characters" 
-	if not title:
-		mydict['title'] = "title must be non-empty" 
-	elif len(title) > 64:
-		mydict['titlelen'] =  "title must be at most 64 characters"
-	if not story:
+		if len(space) > 128:
+			mydict['spacesize'] = "space must be at most 128 characters" 
+	if 'title' in info:
+		title = info['title']
+		if len(title) > 64:
+			mydict['titlelen'] =  "title must be at most 64 characters"
+	else:
+		mydict['title'] = "title must be non-empty"
+	if 'story' in info:
+		story = info['story']
+		if len(story) > 2048:
+			mydict['storylen'] = "story must be at most 2048 characters"
+	else:
 		mydict['story'] = "story must be non-empty"
-	elif len(story) > 2048:
-		mydict['storylen'] = "story must be at most 2048 characters"
-	if happiness_level > 3 or happiness_level < 1 or not (type(happiness_level) is int):
-		mydict['happiness_level'] = "happiness_level must be an integer from 1 to 3"
+	if 'happiness_level' in info:
+		happiness_level = info['happiness_level']
+		if happiness_level > 3 or happiness_level < 1 or not (type(happiness_level) is int):
+			mydict['happiness_level'] = "happiness_level must be an integer from 1 to 3"
+	else:
+		mydict['happiness_level_missing'] = "happiness_level is missing"
+	
 	return mydict
 
 def deleteError(request):
@@ -73,23 +81,23 @@ def doSmile(request):
 				response['smiles'] = map(model_to_dict, smiles.objects.filter(space = request.GET.get('space')).order_by(request.GET.get('-order_by', 'updated_at'))[:int(count)])
 		else:
 			response['status'] = -1
-			response['error'] = []
+			response['errors'] = []
 			for key in error:
-				response['error'].append(error[key])
+				response['errors'].append(error[key])
 		return JsonResponse(response)
 	if request.method == 'POST':
 		response = {}
 		error = postError(request)
 		if error == {}:
-			newPost = models.smiles(json.loads(request.body),like_count=0,create_at =time(),updated_at=time())
+			newPost = smiles.newSmile(json.loads(request.body),like_count=0,create_at =time(),updated_at=time())
 			newPost.save()
 			response['status'] = 1
 			response['smiles'] = model_to_dict(newPost)
 		else:
 			response['status'] = -1
-			response['error'] = []
+			response['errors'] = []
 			for key in error:
-				response['error'].append(error[key])
+				response['errors'].append(error[key])
 		return JsonResponse(response)
 	if request.method == 'DELETE':
 		response = {}
@@ -100,9 +108,9 @@ def doSmile(request):
 			response['status'] = 1
 		else:
 			response['status'] = -1
-			response['error'] = []
+			response['errors'] = []
 			for key in error:
-				response['error'].append(error[key])
+				response['errors'].append(error[key])
 		return JsonResponse(response)
 
 
