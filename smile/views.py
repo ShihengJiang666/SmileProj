@@ -89,7 +89,7 @@ def doSmile(request):
 		response = {}
 		error = postError(request)
 		if error == {}:
-			newPost = smiles.newSmile(json.loads(request.body),like_count=0,create_at =time(),updated_at=time())
+			newPost = smiles.newSmile(json.loads(request.body),like_count=0,created_at =time(),updated_at=time())
 			newPost.save()
 			response['status'] = 1
 			response['smile'] = model_to_dict(newPost)
