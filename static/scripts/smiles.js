@@ -112,7 +112,7 @@ var Smile = (function() {
             console.error('display smiles failed'); 
         };
         /* FINISH ME (Task 2): make a GET request to get recent smiles */
-        makeGetRequest('/api/smiles?space='+smileSpace+'&count=10&order_by=created_at', onSuccess, onFailure);
+        makeGetRequest('/api/smiles?space='+smileSpace+'&count=10&order_by=like_count', onSuccess, onFailure);
     };
 
     /**
@@ -136,10 +136,10 @@ var Smile = (function() {
                 newElem.find('.story').text(data.smile.story);
                 newElem.find('.happiness-level').addClass('happiness-level-' + parseInt(data.smile.happiness_level));
                 newElem.find('.count').text(data.smile.like_count);
-                newElem.find('.timestamp').text(time(smile.created_at));
+                newElem.find('.timestamp').text(time(data.smile.created_at));
                 
             };
-            var onFailure = function() { 
+            var onFailure = function(e) { 
                 console.error('like smile error'); 
             };
             /* FINISH ME (Task 3): make a POST request to like this smile */

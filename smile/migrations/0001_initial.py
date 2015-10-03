@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('story', models.CharField(max_length=2048)),
                 ('happiness_level', models.IntegerField()),
                 ('like_count', models.IntegerField(default=0)),
-                ('create_at', models.FloatField()),
+                ('created_at', models.FloatField()),
                 ('updated_at', models.FloatField()),
             ],
         ),

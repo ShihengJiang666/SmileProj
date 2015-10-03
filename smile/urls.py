@@ -18,6 +18,6 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    url(r'^smiles', views.doSmile),
+    url(r'^smiles$', views.doSmile),
     url(r'^smiles/(?P<id>[0-9]+)/like', views.likeSmile),
 ]

@@ -120,7 +120,11 @@ def likeSmile(request, id):
 			obj = smiles.objects.get(id=id)
 			obj.like_count+=1
 			obj.updated_at = time()
+			obj.save()
+			mydict = {"status":1, "smile":model_to_dict(obj)}
+			return JsonResponse(mydict)
 		except ObjectDoesNotExist:
-			print "Invalid smile id"
+			mydict = {'errors': ["Invalid smile id"], "status" : -1}
+			return JsonResponse(mydict)
 	else:
 		return HttpMethodNotAllowed(['POST'])
