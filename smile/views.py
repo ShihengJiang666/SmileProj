@@ -58,8 +58,7 @@ def deleteError(request):
 		mydict['space'] = "space must be non-empty"
 	elif len(space) > 128:
 		mydict['spacesize'] = "space must be at most 128 characters" 
-	if not title:
-		return mydict
+	return mydict
 
 def isNumber(s):
 	try:
