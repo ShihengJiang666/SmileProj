@@ -107,6 +107,7 @@ def get_routes():
         routes.append(route_dom.attributes['tag'].value)
     return routes
 
+@bond.spy_point()
 def read_console(prompt):
     """
     Read a line from the console

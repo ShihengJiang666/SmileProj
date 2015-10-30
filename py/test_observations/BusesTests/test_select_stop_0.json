@@ -1,0 +1,13 @@
+[
+{
+    "__spy_point__": "buses.read_console", 
+    "prompt": "Select a stop by its number (1-2): "
+},
+{
+    "d": {
+        "lat": 1.0, 
+        "lon": 1.0, 
+        "title": "stop1"
+    }
+}
+]
