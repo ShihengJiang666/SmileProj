@@ -18,24 +18,27 @@ class BusesTests(unittest.TestCase):
         :return:
         """
         bond.start_test(self) 
-        
+
         d1 = compute_lat_long_distance(
             dict(lat=38.898, lon=-77.037),
             dict(lat=38.897, lon=-77.043)
         )
-        self.assertEquals(0.330, d1)  # 0.531 km
+        #self.assertEquals(0.330, d1)  # 0.531 km
 
         d2 = compute_lat_long_distance(
             dict(lat=38.898, lon=-97.030),
             dict(lat=38.890, lon=-97.044)
         )
-        self.assertEquals(0.935, d2) # 1.504 km
+        #self.assertEquals(0.935, d2) # 1.504 km
 
         d3 = compute_lat_long_distance(
             dict(lat=38.958, lon=-97.038),
             dict(lat=38.890, lon=-97.044)
         )
-        self.assertEquals(4.712, d3) # 7.581 km
+        #self.assertEquals(4.712, d3) # 7.581 km
+        bond.spy(d1=d1, d2=d2, d3=d3)
+
+
 
 
 
