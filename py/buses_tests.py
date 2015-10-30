@@ -17,6 +17,8 @@ class BusesTests(unittest.TestCase):
         The data was verified manually w.r.t. http://andrew.hedges.name/experiments/haversine/
         :return:
         """
+        bond.start_test(self) 
+        
         d1 = compute_lat_long_distance(
             dict(lat=38.898, lon=-77.037),
             dict(lat=38.897, lon=-77.043)
